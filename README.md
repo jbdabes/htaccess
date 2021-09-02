@@ -96,7 +96,7 @@ RewriteRule ^ %1%3%{REQUEST_URI} [R=301,L]
 ``` apacheconf
 RewriteEngine on
 RewriteCond %{HTTPS} !on
-RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Note: It’s also recommended to enable HTTP Strict Transport Security (HSTS)
 # on your HTTPS website to help prevent man-in-the-middle attacks.
@@ -111,7 +111,7 @@ RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
 Useful if you have a proxy in front of your server performing TLS termination.
 ``` apacheconf
 RewriteCond %{HTTP:X-Forwarded-Proto} !https
-RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 ```
 
 ### Force HTTPS on Heart Internet
@@ -119,7 +119,7 @@ Heart Internet has different parameters for htaccess files.
 ``` apacheconf
 RewriteEngine on
 RewriteCond %{ENV:HTTPS} !on
-RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Note: It’s also recommended to enable HTTP Strict Transport Security (HSTS)
 # on your HTTPS website to help prevent man-in-the-middle attacks.
